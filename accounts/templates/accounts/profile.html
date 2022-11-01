@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+{% if request.user %}
+
+<h1>email : {{ request.user.email }}</h1>
+<h1>username : {{ request.user.username }}</h1>
+{% comment %} {{ request.user.email }} {% endcomment %}
+
+{% endif %}
+
+{% endblock content %}
