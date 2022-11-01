@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product
 
+
 # Create your views here.
 
 def index(request):
@@ -9,5 +10,6 @@ def index(request):
         "product": product,
     }
     return render(request, "products/index.html", context)
+
 
 
