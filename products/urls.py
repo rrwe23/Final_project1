@@ -4,7 +4,8 @@ from . import views
 app_name = 'products'
 
 urlpatterns = [
-    # # 상품
+
+    # 상품
     # path("", views.index, name="index"), # 상품 리스트
     # path("create/", views.create, name="create"), # 상품 글 작성
     # path("<int:product_pk>/", views.detail, name="detail"), # 상품 조회 페이지
