@@ -5,7 +5,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('signup/', views.signup, name='signup'),
-    # path('accounts/', include('accounts.urls')),
+    path('login/', views.login, name='login'),
     # path('products/', include('products.urls')),
     # path('reviews/', include('reviews.urls')),
 ]
