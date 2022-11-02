@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib.auth import get_user_model
+from .forms import ProductForm
 
 
 def main(request):
@@ -23,8 +24,20 @@ def index(request, user_pk):
     
 
 
-def create(request):
-    pass
+def create(request, user_pk):
+    if request.method == "POST":
+        product_form = ProductForm(request.POST, request.FILES)
+        if product_form.is_valid():
+            product = product_form.save(commit=False)
+            product.user = request.user
+            product.save()
+            return redirect('products:index')
+    else:
+        product_form = ProductForm()
+    context = {
+        "product_form": product_form
+    }
+    return render(request, "products/forms.html", context)
 
 
    
