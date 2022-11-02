@@ -28,29 +28,10 @@ class Product(models.Model):
 
                     
 
-class Review(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    star = models.CharField(max_length=5)
-    created_at = models.DateTimeField(auto_now_add = True)
-    image = ProcessedImageField(upload_to="images/", blank=True,
-                                    processors=[ResizeToFill(200,100)],
-                                    format ='JPEG',
-                                    options = {'quality':80})
-    content = models.TextField()
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'like_reviews')
 
 
-class Question(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add = True)
-    content = models.TextField()
-    answers = models.OneToOneField('products.Answer', on_delete = models.CASCADE)
 
-class Answer(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add = True)
-    content = models.TextField()
-    questions = models.OneToOneField('products.Question', on_delete = models.CASCADE)
+
 
 
 
