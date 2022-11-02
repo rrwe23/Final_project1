@@ -16,9 +16,9 @@ def main(request):
     
 
 def index(request, user_pk):
-    product = Product.objects.order_by("-pk")
+    products = Product.objects.order_by("-pk")
     context = {
-        "product": product,
+        "products": products,
     }
     return render(request, "products/index.html", context)
     
@@ -31,7 +31,7 @@ def create(request, user_pk):
             product = product_form.save(commit=False)
             product.user = request.user
             product.save()
-            return redirect('products:index')
+            return redirect('products:index', user_pk)
     else:
         product_form = ProductForm()
     context = {
@@ -41,8 +41,13 @@ def create(request, user_pk):
 
 
    
-def detail(request):
-    pass
+def detail(request, user_pk, product_pk):
+    product = Product.objects.get(pk=product_pk)
+    context = {
+        "product":product
+    }
+    return render(request, "products/detail.html", context, user_pk)
+    
 
 def update(request):
     pass
