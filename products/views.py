@@ -71,8 +71,15 @@ def delete(request, product_pk):
     return redirect("products:index", user_id)
 
 
-def cart(request):
-    pass
+def cart(request, product_pk):
+    product = Product.objects.get(id=product_pk)
+    if request.user in product.cart.all():
+        product.cart.remove(request.user)
+    else:
+        product.cart.add(request.user) 
+    return redirect('products:detail', product_pk)
+
+
 
 
 

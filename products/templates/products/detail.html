@@ -12,5 +12,10 @@
 <p>{{ product.content }}</p>
 <a href="{% url 'products:update' product.pk %}">수정하기</a>
 <a href="{% url 'products:delete' product.pk %}">삭제하기</a>
-
+<a href="{% url 'products:cart' product.pk %}">
+{% if request.user in product.cart.all %}
+    <i class="bi bi-cart-check-fill"></i>
+{% else %}
+    <i class="bi bi-cart-check"></i>
+{% endif %}</a>
 {% endblock content %}
