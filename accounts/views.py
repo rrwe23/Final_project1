@@ -60,6 +60,8 @@ def profile(request):
 
 @login_required
 def register_seller(request, user_pk):
-    get_user_model().objects.get(id=user_pk).is_seller = True
+    user = get_user_model().objects.get(id=user_pk)
+    user.is_seller = True
+    user.save()
 
     return redirect('products:main')
