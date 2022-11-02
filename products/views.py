@@ -16,7 +16,7 @@ def main(request):
     
 
 def index(request, user_pk):
-    products = Product.objects.order_by("-pk")
+    products = Product.objects.filter(user_id=user_pk).all()
     context = {
         "products": products,
     }
@@ -41,12 +41,13 @@ def create(request, user_pk):
 
 
    
-def detail(request, user_pk, product_pk):
-    product = Product.objects.get(pk=product_pk)
+def detail(request, product_pk):
+    # seller = get_user_model().objects.get(id=user_pk)
+    product = Product.objects.get(id=product_pk)
     context = {
         "product":product
     }
-    return render(request, "products/detail.html", context, user_pk)
+    return render(request, "products/detail.html", context)
     
 
 def update(request):
