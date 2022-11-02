@@ -11,24 +11,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('accounts', '0001_initial'),
-        ('qna', '0001_initial'),
-        ('reviews', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name='Review',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('price', models.IntegerField()),
+                ('star', models.CharField(max_length=5)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('thumbnail', imagekit.models.fields.ProcessedImageField(blank=True, upload_to='images/')),
                 ('image', imagekit.models.fields.ProcessedImageField(blank=True, upload_to='images/')),
                 ('content', models.TextField()),
-                ('cart', models.ManyToManyField(related_name='cart_product', to='accounts.User')),
-                ('qna', models.ManyToManyField(related_name='qna_product', to='qna.Question')),
-                ('review', models.ManyToManyField(related_name='review_product', to='reviews.Review')),
+                ('like_users', models.ManyToManyField(related_name='like_reviews', to='accounts.User')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.user')),
             ],
         ),
