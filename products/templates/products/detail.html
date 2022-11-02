@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
- <h1>상품 정보</h1>
-<p>{{ product.user }}
-</p>
-<p>{{ product.name }}</p>
-<p>{{ product.price }}</p>
-<p>{{ product.created_at }}</p>
-<p>{{ product.thumbnail }}</p>
-<p>{{ product.image }}</p>
-<p>{{ product.content }}</p>
-<a href="{% url 'products:update' product.pk %}">수정하기</a>
-<a href="{% url 'products:delete' product.pk %}">삭제하기</a>
-<a href="{% url 'products:cart' product.pk %}">
-{% if request.user in product.cart.all %}
-    <i class="bi bi-cart-check-fill"></i>
-{% else %}
-    <i class="bi bi-cart-check"></i>
-{% endif %}</a>
+  <h1>상품 정보</h1>
+  <p>{{ product.user }}
+  </p>
+  <p>{{ product.name }}</p>
+  <p>{{ product.price }}</p>
+  <p>{{ product.created_at }}</p>
+  <p>{{ product.thumbnail }}</p>
+  <p>{{ product.image }}</p>
+  <p>{{ product.content }}</p>
+  <a href="{% url 'products:update' product.pk %}">수정하기</a>
+  <a href="{% url 'products:delete' product.pk %}">삭제하기</a>
+  <a href="{% url 'reviews:index' product.pk %}">리뷰</a>
+  <a href="{% url 'products:cart' product.pk %}">
+    {% if request.user in product.cart.all %}
+      <i class="bi bi-cart-check-fill"></i>
+    {% else %}
+      <i class="bi bi-cart-check"></i>
+    {% endif %}
+  </a>
 {% endblock content %}
