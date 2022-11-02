@@ -62,4 +62,4 @@ def profile(request):
 def register_seller(request, user_pk):
     get_user_model().objects.get(id=user_pk).is_seller = True
 
-    return redirect('reviews:main')
+    return redirect('products:main')
