@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>main</h1>
+{% for seller in sellers %}
+<p>{{ seller.username }}</p>
+{% endfor %}
 {% endblock content %}

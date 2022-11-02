@@ -5,8 +5,10 @@ from django.contrib.auth import get_user_model
 
 def main(request):
     sellers = get_user_model().objects.filter(is_seller=True)
+    products = Product.objects.all()
     context = {
-        "sellers": sellers
+        "sellers": sellers,
+        "products": products
     }
     return render(request, "products/main.html", context)
 
