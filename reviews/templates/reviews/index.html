@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>index</h1>
+  {% for review in reviews %}
+      <p>{{ review.name }}</p>
+      <p>{{ review.star }}</p>
+      <p>{{ review.created_at }}</p>
+      <p>{{ review.content }}</p>
+      <p>{{ review.like_users }}</p>
+  {% endfor %}
+
+  <a href="{% url '' %}">
+    작성하기
+  </a>
 
 {% endblock content %}
