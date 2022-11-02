@@ -50,11 +50,26 @@ def detail(request, product_pk):
     return render(request, "products/detail.html", context)
     
 
-def update(request):
-    pass
+def update(request, product_pk):
+    product = Product.objects.get(id=product_pk)
+    if request.method == "POST":
+        product_form = ProductForm(request.POST, request.FILES, instance=product)
+        if product_form.is_valid():
+            product_form.save()
+            return redirect("products:detail", product_pk)
+    else:
+        product_form = ProductForm(instance=product)
+    context = {
+        "product_form": product_form
+    }
+    return render(request, "products/forms.html", context)
 
-def delete(request):
-    pass
+def delete(request, product_pk):
+    product = Product.objects.get(id=product_pk)
+    user_id = product.user_id
+    product.delete()
+    return redirect("products:index", user_id)
+
 
 def cart(request):
     pass
