@@ -8,9 +8,9 @@ def index(request,product_pk):
 
     context = {
         'reviews' : reviews,
-
     }
-    return render(request,'reviews/index.html',context)
+    
+    return render(request, 'reviews/index.html', context)
 
 
 
