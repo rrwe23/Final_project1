@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>장바구니</h1>
+
+{% for product in  cart %}
+
+<div>
+    <p>이름 : {{ product.name }}</p>
+    <p>가격 : {{ product.price }}</p>
+</div>
+
+{% endfor %}
+
+{% endblock content %}
