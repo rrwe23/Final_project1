@@ -10,4 +10,7 @@
 <p>{{ product.thumbnail }}</p>
 <p>{{ product.image }}</p>
 <p>{{ product.content }}</p>
+<a href="{% url 'products:update' product.pk %}">수정하기</a>
+<a href="{% url 'products:delete' product.pk %}">삭제하기</a>
+
 {% endblock content %}

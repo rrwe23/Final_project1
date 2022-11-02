@@ -8,7 +8,7 @@ urlpatterns = [
     # 상품
 
     path("", views.main, name="main"), # 상점이 있는 메인 화면(상점 리스트) => 상품이 없는 상점을 눌렀을 때, 상품 리스트가 없도록
-    path("<int:user_pk>", views.index, name="index"), # 상점의 상품 리스트
+    path("seller/<int:user_pk>", views.index, name="index"), # 상점의 상품 리스트
     path("<int:user_pk>/create/", views.create, name="create"), # 상품 글 작성
     path("<int:product_pk>/", views.detail, name="detail"), # 상품 조회 페이지
     path("<int:product_pk>/update/", views.update, name="update"), # 상품 글 수정
