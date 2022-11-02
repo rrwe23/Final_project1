@@ -15,8 +15,7 @@ def signup(request):
             # user = form.save()
             # auth_login(request, user)
 
-            # 수정 필요
-            return redirect('accounts:signup')
+            return redirect('products:main')
     else:
         form = CustomUserCreationForm()
 
@@ -34,8 +33,7 @@ def login(request):
         if form.is_valid():
             auth_login(request, form.get_user())
 
-            # 수정 필요
-            return redirect(request.GET.get('next') or 'accounts:signup')
+            return redirect(request.GET.get('next') or 'products:main')
 
     else:
         form = AuthenticationForm(request)
