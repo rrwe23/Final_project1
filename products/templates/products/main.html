@@ -2,6 +2,9 @@
 {% block content %}
 <h1>main</h1>
 {% for seller in sellers %}
-<p>{{ seller.username }}</p>
+<a href="{% url 'products:index' seller.pk %}">
+    <p>{{ seller.username }}</p>
+</a>
+
 {% endfor %}
 {% endblock content %}
