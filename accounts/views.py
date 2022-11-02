@@ -58,3 +58,10 @@ def logout(request):
 def profile(request):
     
     return render(request, 'accounts/profile.html')
+
+
+@login_required
+def register_seller(request, user_pk):
+    get_user_model().objects.get(id=user_pk).is_seller = True
+
+    return redirect('reviews:main')
