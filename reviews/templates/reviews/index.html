@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>index</h1>
+  <h1>리뷰 목록</h1>
   {% for review in reviews %}
-      <p> 작성자 : {{ review.user }}</p>
-      <p> 별점 : {{ review.star }}</p>
-      <p> 작성일 : {{ review.created_at }}</p>
-      <p> 내용 : {{ review.content }}</p>
+      <div class="bg-light">
+        <p> 작성자 : {{ review.user }}</p>
+        <p> 별점 : {{ review.star }}</p>
+        <p> 작성일 : {{ review.created_at }}</p>
+      </div>
+      
+      <p class=""> 내용 : {{ review.content }}</p>
+      
       <form action="" method="POST">
-        <a class="btn btn-success" href="{% url 'reviews:update' review.id %}">
-          수정하기
-        </a>
-        <a class="btn btn-danger" href="{% url 'reviews:delete' review.id %}">
-          삭제하기
-        </a>
+        <div class="d-flex justify-content-end">
+          <a class="btn btn-success me-3" href="{% url 'reviews:update' review.id %}">
+            수정하기
+          </a>
+          <a class="btn btn-danger" href="{% url 'reviews:delete' review.id %}">
+            삭제하기
+          </a>
+        </div>
       </form>
+      
       <hr>
   {% endfor %}
 
-  <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}">
-    작성하기
-  </a>
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}">
+      작성하기
+    </a>
+  </div>
 
 {% endblock content %}
