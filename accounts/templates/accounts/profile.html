@@ -4,32 +4,40 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
+  {% if request.user.is_authenticated %}
 
-    <h1>email :
-      {{ request.user.email }}</h1>
-    <h1>username :
-      {{ request.user.username }}</h1>
+    <div class="card border border-warning border-5" style="  width: 40rem; height: 20rem; d-flex position: relative;">
 
-  {% endif %}
+      <div class="card-body">
 
-  <div class="card" style="  width: 40rem; height: 20rem; d-flex position: relative;">
-    <div class="card-body">
-      <h3 class="card-title">Profile</h3>
-      <div class='email_content'>
-        {% if request.user %}
-          <img src="https://pbs.twimg.com/media/DSYRwQsVwAEbNlu?format=png&name=240x240" alt="image">
+        <h3 class="card-title">Profile</h3>
+        <div class='email_content'>
+          <img src="https://pbs.twimg.com/media/DSYRwQsVwAEbNlu?format=png&name=240x240" class="rounded-circle" alt="image">
         </div>
         <div class='email_content'>
-          <h5 class="card-text">Name :
-            {{ request.user.username }}</h5>
-          <h5>Email :
+          <h5 class="card-text mb-3">
+            Name :
+            {{ request.user.username }}
+          </h5>
+          <h5 class="mb-3">
+            Email :
             {{ request.user.email }}
           </h5>
-        {% else %}
-        {% endif %}
+          <h5>
+            Position :
+            <span>
+              {% if request.user.is_seller %}
+                Seller
+              {% else %}
+                Buyer
+              {% endif %}
+            </span>
+          </h5>
+        </div>
+
       </div>
     </div>
-  </div>
+
+  {% endif %}
 
 {% endblock content %}
