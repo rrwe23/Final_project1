@@ -10,8 +10,12 @@
   <p>썸네일 : {{ product.thumbnail }}</p>
   <p>이미지 : {{ product.image }}</p>
   <p>내용 : {{ product.content }}</p>
-  <a href="{% url 'products:update' product.pk %}">수정하기</a>
-  <a href="{% url 'products:delete' product.pk %}">삭제하기</a>
+  {% if request.user == product.user %}
+  
+    <a href="{% url 'products:update' product.pk %}">수정하기</a>
+    <a href="{% url 'products:delete' product.pk %}">삭제하기</a>
+  
+  {% endif %}
   <a href="{% url 'reviews:index' product.pk %}">리뷰</a>
   <a href="{% url 'products:add_cart' product.pk %}">
     {% if request.user in product.cart.all %}
