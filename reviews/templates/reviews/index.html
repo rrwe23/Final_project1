@@ -10,16 +10,20 @@
       
       <p class=""> 내용 : {{ review.content }}</p>
       
-      <form action="" method="POST">
-        <div class="d-flex justify-content-end">
-          <a class="btn btn-success me-3" href="{% url 'reviews:update' review.id %}">
-            수정하기
-          </a>
-          <a class="btn btn-danger" href="{% url 'reviews:delete' review.id %}">
-            삭제하기
-          </a>
-        </div>
-      </form>
+      {% if request.user == review.user %}
+
+        <form action="" method="POST">
+          <div class="d-flex justify-content-end">
+            <a class="btn btn-success me-3" href="{% url 'reviews:update' review.id %}">
+              수정하기
+            </a>
+            <a class="btn btn-danger" href="{% url 'reviews:delete' review.id %}">
+              삭제하기
+            </a>
+          </div>
+        </form>
+      
+      {% endif %}
       
       <hr>
   {% endfor %}
