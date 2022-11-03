@@ -14,14 +14,14 @@ def index(request):
     return render(request, "products/index.html", context)
     
 
-def create(request, user_pk):
+def create(request):
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES)
         if product_form.is_valid():
             product = product_form.save(commit=False)
             product.user = request.user
             product.save()
-            return redirect('products:index', user_pk)
+            return redirect('products:index')
     else:
         product_form = ProductForm()
     context = {
@@ -57,7 +57,7 @@ def delete(request, product_pk):
     product = Product.objects.get(id=product_pk)
     user_id = product.user_id
     product.delete()
-    return redirect("products:index", user_id)
+    return redirect("products:index")
 
 
 def add_cart(request, product_pk):
