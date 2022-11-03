@@ -32,9 +32,11 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'products:create' request.user.id %}">상품글 작성</a>
-                </li>
+                  {% if request.user.is_seller %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'products:create' %}">상품글 작성</a>
+                  </li>
+                  {% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'accounts:profile' %}">프로필</a>
                 </li>
@@ -45,11 +47,10 @@
                   <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
                 </li>
                 {% if not request.user.is_seller %}
-
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'accounts:register_seller' request.user.id %}">판매자 등록</a>
                 </li>
-              {% endif %}
+                {% endif %}
 
             {% else %}
               <li class="nav-item">

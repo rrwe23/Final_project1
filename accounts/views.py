@@ -15,7 +15,7 @@ def signup(request):
             # user = form.save()
             # auth_login(request, user)
 
-            return redirect('products:main')
+            return redirect('products:index')
     else:
         form = CustomUserCreationForm()
 
@@ -33,7 +33,7 @@ def login(request):
         if form.is_valid():
             auth_login(request, form.get_user())
 
-            return redirect(request.GET.get('next') or 'products:main')
+            return redirect(request.GET.get('next') or 'products:index')
 
     else:
         form = AuthenticationForm(request)
@@ -64,4 +64,4 @@ def register_seller(request, user_pk):
     user.is_seller = True
     user.save()
 
-    return redirect('products:main')
+    return redirect('products:index')
