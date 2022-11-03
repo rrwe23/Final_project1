@@ -5,21 +5,13 @@ from .forms import ProductForm
 
 
 def main(request):
-    sellers = get_user_model().objects.filter(is_seller=True)
     products = Product.objects.all()
+
     context = {
-        "sellers": sellers,
         "products": products
     }
-    return render(request, "products/main.html", context)
-
     
-def index(request, user_pk):
-    products = Product.objects.filter(user_id=user_pk)
-    context = {
-        "products": products,
-    }
-    return render(request, "products/index.html", context)
+    return render(request, "products/main.html", context)
     
 
 def create(request, user_pk):
