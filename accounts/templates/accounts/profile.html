@@ -4,40 +4,43 @@
 
 {% block content %}
 
-
   {% if request.user.is_authenticated %}
+    <div class="d-flex justify-content-center p-5 mt-5">
+      <div class="card border border-warning border-5 p-5 " style="width:640px;">
 
-    <div class="card border border-warning border-5" style="  width: 40rem; height: 20rem; d-flex position: relative;">
+        <div class="d-flex flex-column align-items-center">
 
-      <div class="card-body">
+          <h3 class="">Profile</h3>
+          <div class="d-flex">
+            <div class="">
+              <img src="https://pbs.twimg.com/media/DSYRwQsVwAEbNlu?format=png&name=240x240" class="rounded-circle" alt="image">
+            </div>
+            <div class="d-flex flex-column justify-content-center ms-5">
 
-        <h3 class="card-title">Profile</h3>
-        <div class='email_content'>
-          <img src="https://pbs.twimg.com/media/DSYRwQsVwAEbNlu?format=png&name=240x240" class="rounded-circle" alt="image">
+              <h5 class="mb-3">
+                Name :
+                {{ request.user.username }}
+              </h5>
+              <h5 class="mb-3">
+                Email :
+                {{ request.user.email }}
+              </h5>
+              <h5>
+                Position :
+                <span>
+                  {% if request.user.is_seller %}
+                    Seller
+                  {% else %}
+                    Buyer
+                  {% endif %}
+                </span>
+              </h5>
+
+            </div>
+          </div>
+
         </div>
-        <div class='email_content'>
-          <h5 class="card-text mb-3">
-            Name :
-            {{ request.user.username }}
-          </h5>
-          <h5 class="mb-3">
-            Email :
-            {{ request.user.email }}
-          </h5>
-          <h5>
-            Position :
-            <span>
-              {% if request.user.is_seller %}
-                Seller
-              {% else %}
-                Buyer
-              {% endif %}
-            </span>
-          </h5>
-        </div>
-
       </div>
     </div>
-
   {% endif %}
 {% endblock content %}
