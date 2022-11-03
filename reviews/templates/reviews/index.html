@@ -2,14 +2,14 @@
 {% block content %}
   <h1>index</h1>
   {% for review in reviews %}
-      <p>{{ review.name }}</p>
-      <p>{{ review.star }}</p>
-      <p>{{ review.created_at }}</p>
-      <p>{{ review.content }}</p>
-      <p>{{ review.like_users }}</p>
+      <p> 작성자 : {{ review.user }}</p>
+      <p> 별점 : {{ review.star }}</p>
+      <p> 작성일 : {{ review.created_at }}</p>
+      <p> 내용 : {{ review.content }}</p>
+      <p> 좋아요 수 : {{ review.like_users.count }}</p>
   {% endfor %}
 
-  <a href="{% url '' %}">
+  <a href="{% url 'reviews:create' product_pk %}">
     작성하기
   </a>
 

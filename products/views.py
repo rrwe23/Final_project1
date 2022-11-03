@@ -70,12 +70,12 @@ def delete(request, product_pk):
 
 def add_cart(request, product_pk):
     product = Product.objects.get(id=product_pk)
-    print(product.cart.all())
+
     if request.user in product.cart.all():
         product.cart.remove(request.user)
     else:
         product.cart.add(request.user)
-        print(product.cart.all())
+        
     return redirect('products:detail', product_pk)
 
 

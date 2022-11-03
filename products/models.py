@@ -3,7 +3,8 @@ from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-
+from reviews.models import Review
+from qna.models import Question
 
 
 
@@ -22,8 +23,8 @@ class Product(models.Model):
                                     options={'quality':80})
     content = models.TextField()
     cart = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'cart_product')
-    review = models.ManyToManyField('reviews.Review', related_name = 'review_product')
-    qna = models.ManyToManyField('qna.Question', related_name = 'qna_product')
+    review = models.ManyToManyField(Review, related_name = 'review_product')
+    qna = models.ManyToManyField(Question, related_name = 'qna_product')
 
 
                     
