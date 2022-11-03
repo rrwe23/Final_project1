@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib.auth import get_user_model
 from .forms import ProductForm
-
+import random
 
 def index(request):
     products = Product.objects.all()
 
     context = {
-        "products": products
+        "products": products,
+        "carousels": random.sample(list(products), k=3)
     }
 
     return render(request, "products/index.html", context)
@@ -60,8 +61,8 @@ def update(request, product_pk):
 
 def delete(request, product_pk):
     product = Product.objects.get(id=product_pk)
-    user_id = product.user_id
     product.delete()
+
     return redirect("products:index")
 
 
