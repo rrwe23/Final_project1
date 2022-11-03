@@ -9,6 +9,5 @@ class ProductForm(forms.ModelForm):
             "user",
             "cart",
             "review",
-            "qna",
         )
         # field = ['name', 'price', 'thumbnail', 'image', 'content']

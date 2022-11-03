@@ -17,7 +17,6 @@ def index(request, product_pk):
 
 def create(request, product_pk):
     product = Product.objects.get(id=product_pk)
-    review_data = Review.objects.all()
 
     if request.method == 'POST':
         form = ReviewForm(request.POST, request.FILES)
@@ -43,3 +42,25 @@ def create(request, product_pk):
 
     return render(request, 'reviews/forms.html', context)
 
+
+def update(request, review_pk):
+    review = Review.objects.get(id=review_pk)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, request.FILES, instance=review)
+
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.save()
+
+            return redirect('reviews:index', review.review_product.get().id)
+
+    else:
+        form = ReviewForm(instance=review)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'reviews/forms.html', context)
