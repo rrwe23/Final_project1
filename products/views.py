@@ -14,15 +14,13 @@ def main(request):
     return render(request, "products/main.html", context)
 
     
-
 def index(request, user_pk):
-    products = Product.objects.filter(user_id=user_pk).all()
+    products = Product.objects.filter(user_id=user_pk)
     context = {
         "products": products,
     }
     return render(request, "products/index.html", context)
     
-
 
 def create(request, user_pk):
     if request.method == "POST":
@@ -40,7 +38,6 @@ def create(request, user_pk):
     return render(request, "products/forms.html", context)
 
 
-   
 def detail(request, product_pk):
     # seller = get_user_model().objects.get(id=user_pk)
     product = Product.objects.get(id=product_pk)
@@ -71,15 +68,26 @@ def delete(request, product_pk):
     return redirect("products:index", user_id)
 
 
-def cart(request, product_pk):
+def add_cart(request, product_pk):
     product = Product.objects.get(id=product_pk)
+
     if request.user in product.cart.all():
         product.cart.remove(request.user)
     else:
-        product.cart.add(request.user) 
+        product.cart.add(request.user)
+        
     return redirect('products:detail', product_pk)
 
 
+def show_cart(request, user_pk):
+    user = get_user_model().objects.get(id=user_pk)
+    cart = user.cart_product.all()
+    
+    context = {
+        'cart': cart
+    }
+
+    return render(request, 'products/wishlist.html', context)
 
 
 

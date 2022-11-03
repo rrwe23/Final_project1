@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>index</h1>
+  {% for review in reviews %}
+      <p> 작성자 : {{ review.user }}</p>
+      <p> 별점 : {{ review.star }}</p>
+      <p> 작성일 : {{ review.created_at }}</p>
+      <p> 내용 : {{ review.content }}</p>
+      <form action="" method="POST">
+        <a class="btn btn-success" href="{% url 'reviews:update' review.id %}">
+          수정하기
+        </a>
+        <a class="btn btn-danger" href="{% url 'reviews:delete' review.id %}">
+          삭제하기
+        </a>
+      </form>
+      <hr>
+  {% endfor %}
+
+  <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}">
+    작성하기
+  </a>
 
 {% endblock content %}
