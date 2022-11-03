@@ -6,24 +6,30 @@
 
 {% if request.user.is_authenticated %}
 
-<h1>email : {{ request.user.email }}</h1>
-<h1>username : {{ request.user.username }}</h1>
-{% comment %} {{ request.user.email }} {% endcomment %}
+    <h1>email :
+      {{ request.user.email }}</h1>
+    <h1>username :
+      {{ request.user.username }}</h1>
 
+  {% endif %}
 
-
-{% endif %}
-
-<div class="card" style="  width: 32rem; height: 20rem; d-flex position: relative;">
+  <div class="card" style="  width: 40rem; height: 20rem; d-flex position: relative;">
     <div class="card-body">
       <h3 class="card-title">Profile</h3>
-      <h5>Email</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <div class='email_content'>
+        {% if request.user %}
+          <img src="https://pbs.twimg.com/media/DSYRwQsVwAEbNlu?format=png&name=240x240" alt="image">
+        </div>
+        <div class='email_content'>
+          <h5 class="card-text">Name :
+            {{ request.user.username }}</h5>
+          <h5>Email :
+            {{ request.user.email }}
+          </h5>
+        {% else %}
+        {% endif %}
+      </div>
     </div>
   </div>
-
- 
 
 {% endblock content %}
