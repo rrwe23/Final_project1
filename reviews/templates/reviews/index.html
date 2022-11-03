@@ -6,8 +6,12 @@
       <p> 별점 : {{ review.star }}</p>
       <p> 작성일 : {{ review.created_at }}</p>
       <p> 내용 : {{ review.content }}</p>
-      <p> 좋아요 수 : {{ review.like_users.count }}</p>
+      <a href="{% url 'reviews:update' review.id %}">
+        수정하기
+      </a>
   {% endfor %}
+
+  <hr>
 
   <a href="{% url 'reviews:create' product_pk %}">
     작성하기
