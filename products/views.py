@@ -4,14 +4,14 @@ from django.contrib.auth import get_user_model
 from .forms import ProductForm
 
 
-def main(request):
+def index(request):
     products = Product.objects.all()
 
     context = {
         "products": products
     }
-    
-    return render(request, "products/main.html", context)
+
+    return render(request, "products/index.html", context)
     
 
 def create(request, user_pk):
