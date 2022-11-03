@@ -17,16 +17,21 @@ def index(request):
 def create(request):
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES)
+
         if product_form.is_valid():
             product = product_form.save(commit=False)
             product.user = request.user
             product.save()
+
             return redirect('products:index')
+
     else:
         product_form = ProductForm()
+
     context = {
         "product_form": product_form
     }
+
     return render(request, "products/forms.html", context)
 
 
@@ -72,8 +77,7 @@ def add_cart(request, product_pk):
 
 
 def show_cart(request, user_pk):
-    user = get_user_model().objects.get(id=user_pk)
-    cart = user.cart_product.all()
+    cart = get_user_model().objects.get(id=user_pk).cart_product.all()
     
     context = {
         'cart': cart

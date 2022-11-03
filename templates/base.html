@@ -34,7 +34,7 @@
                 {% if request.user.is_authenticated %}
                   {% if request.user.is_seller %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'products:create' request.user.id %}">상품글 작성</a>
+                    <a class="nav-link" href="{% url 'products:create' %}">상품글 작성</a>
                   </li>
                   {% endif %}
                 <li class="nav-item">

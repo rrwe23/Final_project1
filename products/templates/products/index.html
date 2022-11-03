@@ -6,10 +6,12 @@
 
 {% for product in products %}
 
-<div style="width: 480px; height: 320px;">
-    <a href="{% url 'products:detail' product.pk %}">
-        <img src="{{ product.image.url }}" style="width: 480px; height: 320px;">
-    </a>
+<div>
+    <div style="width: 480px; height: 320px;">
+        <a href="{% url 'products:detail' product.pk %}">
+            <img src="{{ product.image.url }}">
+        </a>
+    </div>
     <p>{{ product.name }}</p>
     <hr>
     <p>{{ product.price }}원</p>
