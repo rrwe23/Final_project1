@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% if request.user %}
+{% if request.user.is_authenticated %}
 
 <h1>email : {{ request.user.email }}</h1>
 <h1>username : {{ request.user.username }}</h1>
