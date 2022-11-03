@@ -3,18 +3,28 @@
 
 {% block content %}
 {% if request.resolver_match.url_name == 'create' %}
-<h1 class="my-4 text-center">
-    상품 등록
-  </h1>
+<div class="container-fluid py-5 rounded" style="background-color: #E9EEF5;">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1">상품 등록</h1>
+    </div>
+</div>
 {% else %}
-  <h1>
-    상품 수정
-  </h1>
+<div class="container-fluid py-5 rounded" style="background-color: #E9EEF5;">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1">상품 수정</h1>
+    </div>
+</div>
 {% endif %}
+<div class="d-flex justify-content-center align-items-center m-auto mt-5">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form product_form %}
+        {% bootstrap_button content="ok" button_type="submit" button_class="btn-danger" %}
+    </form>
+</div>
 
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form product_form %}
-    {% bootstrap_button content="ok" button_type="submit" button_class="btn-danger" %}
-  </form>
+
+
+
+
 {% endblock content %}
