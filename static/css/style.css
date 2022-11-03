@@ -1,13 +1,14 @@
 .card-title {
-    color: #FCA205;
+    color: orange;
     text-align: center;
 }
 
 .card {
     margin: auto;
+    margin-top: 10rem;
 }
 
 .email_content{
     display: inline-block;
-    
+    margin-left: 2.5rem;
 }
