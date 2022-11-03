@@ -64,3 +64,11 @@ def update(request, review_pk):
     }
 
     return render(request, 'reviews/forms.html', context)
+
+
+def delete(request, review_pk):
+    review = Review.objects.get(id=review_pk)
+    product_pk = review.review_product.get().id
+    review.delete()
+
+    return redirect('reviews:index', product_pk)
