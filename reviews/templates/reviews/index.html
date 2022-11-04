@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block content %}
-  <h1 class="text-center my-4 text-warning">리뷰 목록</h1>
+  <h1 class="text-center my-4" style="color: #212934;">리뷰 목록</h1>
 
   
     {% for review in reviews %}
@@ -29,7 +29,7 @@
           <p  class="mb-0 me-5" style="font-size: 14px;"> {{ review.star }}</p>
         </div> 
         <hr class="m-0">
-        <p class="m-4"> {{ review.content }}</p>
+        <p class="m-4 pb-4"> {{ review.content }}</p>
       </div>
     {% endfor %}
       
