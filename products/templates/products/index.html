@@ -4,49 +4,45 @@
 
 <h1>index</h1>
 
-<div id="carousel" class="carousel slide" data-bs-ride="true">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner mb-5">
-    {% for carousel in carousels %}
-      {% if forloop.counter == 1 %}
-        <div class="carousel-item active">
-          {% if carousel in products %}
-            <img src="{{ carousel.image.url }}" class="d-block w-100" alt="Error">
-          {% else %}
-            <img src="https://dummyimage.com/640x480/636363/fff" class="d-block w-100" alt="Error">
-          {% endif %}
-          <div class="carousel-caption d-none d-md-block">
-            <h5>slide {{ forloop.counter }} label</h5>
-            <p>Some representative placeholder content for the slide {{ forloop.counter }}.</p>
-          </div>
+<div class="row py-5">
+  <div id="carousel" class="carousel slide" data-bs-ride="false" style="object-fit: cover;min-height: 200px;">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img src="https://csp-clients.s3.amazonaws.com/jjpoolandspa/wp-content/uploads/2015/11/1920x480-water-droplets.jpg" class="d-block w-100" alt="Error"  style="height: 480px">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>slide 1 label</h5>
+          <p>Some representative placeholder content for the slide 1.</p>
         </div>
-      {% else %}
-        <div class="carousel-item">
-          {% if carousel in products %}
-            <img src="{{ carousel.image.url }}" class="d-block w-100" alt="Error">
-          {% else %}
-            <img src="https://dummyimage.com/640x480/636363/fff" class="d-block w-100" alt="Error">
-          {% endif %}
-          <div class="carousel-caption d-none d-md-block">
-            <h5>slide {{ forloop.counter }} label</h5>
-            <p>Some representative placeholder content for the slide {{ forloop.counter }}.</p>
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+      </div>
+      <div class="carousel-item active">
+        <img src="https://pcrbio.com/app/uploads/qPCRBIO-SyGreen-Mix-2560-x-480-banner-1920x480.jpg" class="d-block w-100" alt="Error"  style="height: 480px">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>slide 2 label</h5>
+        <p>Some representative placeholder content for the slide 2.</p>
+      </div>
+      </div>
+      <div class="carousel-item active">
+        <img src="https://pcrbio.com/app/uploads/1-Relative-Gene-Expression-Analysis-2560-x-480-banner-1-1920x480.jpg" class="d-block w-100" alt="Error"  style="height: 480px">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>slide 3 label</h5>
+        <p>Some representative placeholder content for the slide 3.</p>
+      </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 
 <div class="row row-cols-3 row-cols-md-3 g-4">
