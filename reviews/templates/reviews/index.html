@@ -1,32 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>리뷰 목록</h1>
-  {% for review in reviews %}
-      <div class="bg-light">
-        <p> 작성자 : {{ review.user }}</p>
-        <p> 별점 : {{ review.star }}</p>
-        <p> 작성일 : {{ review.created_at }}</p>
-      </div>
-      
-      <p class=""> 내용 : {{ review.content }}</p>
-      
-      {% if request.user == review.user %}
+  <h1 class="text-center my-4 text-warning">리뷰 목록</h1>
 
-        <form action="" method="POST">
-          <div class="d-flex justify-content-end">
-            <a class="btn btn-success me-3" href="{% url 'reviews:update' review.id %}">
-              수정하기
-            </a>
-            <a class="btn btn-danger" href="{% url 'reviews:delete' review.id %}">
-              삭제하기
-            </a>
+  
+    {% for review in reviews %}
+      <div class="bg-light rounded" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; margin: auto;">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-person-circle fs-1 m-2 me-3"></i>
+            <div>
+              <div>
+                <p class="fs-6 mb-0">{{ review.user }}</p>
+                <p class="mb-0 text-muted d-none d-lg-block" style="font-size: 12px;"> {{ review.created_at }}</p>
+                {% if request.user == review.user %}    
+                <form action="" method="POST">
+                  <div class="d-flex">
+                    <a class="me-1" style="color: orange; text-decoration: none; font-size: 10px;" href="{% url 'reviews:update' review.id %}">
+                      수정하기<i class="bi bi-check2-circle"></i>
+                    </a>
+                    <a style="color: #F96666; text-decoration: none; font-size: 10px;" href="{% url 'reviews:delete' review.id %}">
+                      삭제하기 <i class="bi bi-x-circle"></i>
+                    </a>
+                  </div>
+                </form>
+                {% endif %}
+              </div>
+            </div>
           </div>
-        </form>
+          <p  class="mb-0 me-5" style="font-size: 14px;"> {{ review.star }}</p>
+        </div> 
+        <hr class="m-0">
+        <p class="m-4"> {{ review.content }}</p>
+      </div>
+    {% endfor %}
       
-      {% endif %}
-      
-      <hr>
-  {% endfor %}
 
   <div class="d-flex justify-content-end">
     <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}">
