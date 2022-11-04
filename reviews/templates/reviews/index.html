@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% block content %}
   <h1 class="text-center my-4 text-warning">리뷰 목록</h1>
 
@@ -13,16 +14,14 @@
                 <p class="fs-6 mb-0">{{ review.user }}</p>
                 <p class="mb-0 text-muted d-none d-lg-block" style="font-size: 12px;"> {{ review.created_at }}</p>
                 {% if request.user == review.user %}    
-                <form action="" method="POST">
                   <div class="d-flex">
-                    <a class="me-1" style="color: orange; text-decoration: none; font-size: 10px;" href="{% url 'reviews:update' review.id %}">
+                    <a class="me-1" style="color: orange; text-decoration: none; font-size: 10px;" href="{% url 'reviews:update' review.id %}" >
                       수정하기<i class="bi bi-check2-circle"></i>
                     </a>
                     <a style="color: #F96666; text-decoration: none; font-size: 10px;" href="{% url 'reviews:delete' review.id %}">
                       삭제하기 <i class="bi bi-x-circle"></i>
                     </a>
                   </div>
-                </form>
                 {% endif %}
               </div>
             </div>
@@ -35,10 +34,14 @@
     {% endfor %}
       
 
-  <div class="d-flex justify-content-end">
+
+<div class="d-flex justify-content-end">
     <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}">
       작성하기
     </a>
-  </div>
+</div>  
+
+  
+
 
 {% endblock content %}
