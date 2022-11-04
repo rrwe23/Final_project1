@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
@@ -13,9 +12,9 @@ class Product(models.Model):
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add = True)
     image = ProcessedImageField(upload_to='images/', blank=True,
-                                    processors=[ResizeToFill(1200,960)],
+                                    processors=[ResizeToFill(640,480)],
                                     format='JPEG',
-                                    options={'quality':80})
+                                    options={'quality':90})
     content = models.TextField()
     cart = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'cart_product')
     review = models.ManyToManyField(Review, related_name = 'review_product')

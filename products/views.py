@@ -7,9 +7,14 @@ import random
 def index(request):
     products = Product.objects.all()
 
+    if len(products) < 3:
+        carousels = list(range(3))
+    else:
+        carousels = random.sample(list(products), k=3)
+
     context = {
         "products": products,
-        "carousels": random.sample(list(products), k=3)
+        "carousels": carousels,
     }
 
     return render(request, "products/index.html", context)
@@ -37,26 +42,32 @@ def create(request):
 
 
 def detail(request, product_pk):
-    # seller = get_user_model().objects.get(id=user_pk)
     product = Product.objects.get(id=product_pk)
+
     context = {
         "product":product
     }
+
     return render(request, "products/detail.html", context)
     
 
 def update(request, product_pk):
     product = Product.objects.get(id=product_pk)
+
     if request.method == "POST":
         product_form = ProductForm(request.POST, request.FILES, instance=product)
+
         if product_form.is_valid():
             product_form.save()
+
             return redirect("products:detail", product_pk)
     else:
         product_form = ProductForm(instance=product)
+
     context = {
         "product_form": product_form
     }
+
     return render(request, "products/forms.html", context)
 
 def delete(request, product_pk):
@@ -85,6 +96,3 @@ def show_cart(request, user_pk):
     }
 
     return render(request, 'products/wishlist.html', context)
-
-
-
