@@ -96,3 +96,9 @@ def show_cart(request, user_pk):
     }
 
     return render(request, 'products/wishlist.html', context)
+
+
+def delete_cart(request, product_pk):
+    Product.objects.get(id=product_pk).cart.remove()
+
+    return redirect('products:show_cart', request.user.pk)

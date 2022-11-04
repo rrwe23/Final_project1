@@ -10,6 +10,9 @@
     <p>이름 : {{ product.name }}</p>
     <p>가격 : {{ product.price }}</p>
     <img src="{{ product.image.url }}" alt="123">
+    <a href="{% url 'products:delete_cart' product.pk %}">
+        삭제
+    </a>
 </div>
 
 {% endfor %}
