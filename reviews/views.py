@@ -6,7 +6,7 @@ from .models import Review
 def index(request, product_pk):
     product = Product.objects.get(id=product_pk)
     reviews = product.review.all()
-    form = ReviewForm()
+    form = ReviewForm(instance=product)
 
     context = {
         'reviews': reviews,
