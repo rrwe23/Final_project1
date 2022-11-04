@@ -4,6 +4,8 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from random import random
+from urllib import parse
 
 # Create your views here.
 def signup(request):
@@ -65,3 +67,33 @@ def register_seller(request, user_pk):
     user.save()
 
     return redirect('products:index')
+
+
+def naver(request):
+    api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code'
+    client_ID = '&client_id=xkZnnh3vWdsrFtmARGJW'
+    redirect_uri = parse.quote('http://127.0.0.1:8000/accounts/login/naver/callback')
+    state = parse.quote(f"{request.user}" + f"{random()}")
+
+    api_url += client_ID
+    api_url += '&redirect_uri=' + redirect_uri
+    api_url += '&state=' + state
+    
+    return redirect(api_url)
+
+
+def naver_callback(request):
+    api_url = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code'
+    client_ID = '&client_id=xkZnnh3vWdsrFtmARGJW'
+    client_secret = '&client_secret=tHkRTl9BWs'
+    code = request.GET.get('code')
+    state = request.GET.get('state')
+    redirect_uri = parse.quote('http://127.0.0.1:8000/accounts/login/naver/callback')
+
+    api_url += client_ID
+    api_url += client_secret
+    api_url += '&redirect_uri=' + redirect_uri
+    api_url += '&code=' + code
+    api_url += '&state=' + state
+
+    return redirect(api_url)
