@@ -15,7 +15,7 @@
                 <p class="mb-0 text-muted d-none d-lg-block" style="font-size: 12px;"> {{ review.created_at }}</p>
                 {% if request.user == review.user %}    
                   <div class="d-flex">
-                    <a class="me-1" style="color: orange; text-decoration: none; font-size: 10px;" href="{% url 'reviews:update' review.id %}">
+                    <a class="me-1" style="color: orange; text-decoration: none; font-size: 10px;" href="{% url 'reviews:update' review.id %}" >
                       수정하기<i class="bi bi-check2-circle"></i>
                     </a>
                     <a style="color: #F96666; text-decoration: none; font-size: 10px;" href="{% url 'reviews:delete' review.id %}">
@@ -34,28 +34,6 @@
     {% endfor %}
       
 
-  <div class="d-flex justify-content-end">
-    <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}" data-bs-toggle="modal" data-bs-target="#modal{{ product_pk }}" data-bs-whatever="@mdo">
-      작성하기
-    </a>
-    <div class="modal fade" id="modal{{ product_pk }}" tabindex="-1" aria-labelledby="modal{{ product_pk }}Label">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">리뷰 등록</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-           <form action="{% url 'reviews:create' product_pk %}" method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              {% bootstrap_form form %}
-              {% bootstrap_button content="ok" button_type="submit" button_class="btn-danger" %}
-            </form> 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <div class="d-flex justify-content-end">
     <a class="btn btn-primary" href="{% url 'reviews:create' product_pk %}">
