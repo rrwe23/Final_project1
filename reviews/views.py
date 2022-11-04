@@ -6,10 +6,12 @@ from .models import Review
 def index(request, product_pk):
     product = Product.objects.get(id=product_pk)
     reviews = product.review.all()
+    form = ReviewForm()
 
     context = {
         'reviews': reviews,
         'product_pk': product_pk,
+        'form' : form,
     }
     
     return render(request, 'reviews/index.html', context)
