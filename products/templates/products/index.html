@@ -37,7 +37,7 @@
   <div class="row row-cols-3 row-cols-md-3 g-4">
     {% for product in products %}
       <div class="col">
-        <div class="card h-100">
+        <div class="card h-100" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2);"">
           <a href="{% url 'products:detail' product.id %}">
             <img src="{{ product.image.url }}" class="card-img-top" alt="...">
           </a>
