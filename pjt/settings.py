@@ -43,7 +43,34 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    # provider
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
 ]
+
+# For allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
+
+# redirect for allauth
+ACCOUNT_SIGNUP_REDIRECT_URL = 'products:index'
+LOGIN_REDIRECT_URL = 'products:index'
+
+# Override form for allauth
+ACCOUNT_FORMS = {
+    'login': 'django.contrib.auth.forms.AuthenticationForm',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
