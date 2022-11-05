@@ -1,81 +1,85 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div>
+<div>
     <div class="d-flex flex-column align-items-center mt-5">
-
-      <div class="d-flex">
-        <div class="">
-          <hr class="border-5">
-          <h4>{{ product.name }}</h4>
-          <div class=" dd d-flex justify-content-between">
-            <h5>\
-              {{ product.price }}</h5>
-            <a href="{% url 'products:add_cart' product.pk %}">
-              {% if request.user in product.cart.all %}
-                <i class="bi bi-cart-check-fill"></i>
-              {% else %}
-                <i class="bi bi-cart-check"></i>
-              {% endif %}
-            </a>
-          </div>
-          <hr class="border-5 ">
-          <div>
-            <p class="fs-5">Delivery Info</p>
-
-            <div class="d-flex justify-content-between">
-              <p style="font-size:0.8em;">출고 정보</p>
-              <p style="font-size:0.8em;">
-                결제 3일 이내 출고</p>
+        <div>
+            <div class="d-flex">
+                <div style="width:50%;">
+                <hr class="border-5">
+                <h4>{{ product.name }}</h4>
+                <div class=" dd d-flex justify-content-between">
+                    <h5>\
+                    {{ product.price }}</h5>
+                    <a href="{% url 'products:add_cart' product.pk %}">
+                    {% if request.user in product.cart.all %}
+                        <i class="bi bi-cart-check-fill fs-3 text-dark"></i>
+                    {% else %}
+                        <i class="bi bi-cart-check fs-3 text-dark"></i>
+                    {% endif %}
+                    </a>
+                </div>
+                <hr class="border-5 ">
+                <div>
+                    <p class="fs-5">Delivery Info</p>
+    
+                    <div class="d-flex justify-content-between">
+                    <p style="font-size:0.8em;">출고 정보</p>
+                    <p style="font-size:0.8em;">
+                        결제 3일 이내 출고</p>
+                    </div>
+                    <div class="d-flex justify-content-between mx-1">
+                    <p style="font-size:0.8em;">배송비</p>
+                    <p class="mx-5" style="font-size:0.8em;">
+                        무료배송
+                    </p>
+                    </div>
+    
+                    <hr class="border-5 ">
+                    <div class="d-flex justify-content-center">
+    
+                    <a href="{% url 'products:add_cart' product.pk %}" class="btn btn-dark btn-lg btn-block">장바구니 담기</a>
+                    </div>
+                    <hr class="border-5 ">
+                    <div class="d-flex justify-content-between">
+                    <p style="font-size:0.8em;">판매자</p>
+    
+                    <p style="font-size:0.8em;">
+                        {{ product.user }}</p>
+                    </div>
+                    {% if request.user == product.user %}
+                    <div class="d-flex justify-content-center ">
+                        <a href="{% url 'products:update' product.pk %}" class="btn btn-outline-dark mx-1">수정하기</a>
+                        <a href="{% url 'products:delete' product.pk %}" class="btn btn-outline-dark mx-1">삭제하기</a>
+                    </div>
+                    {% endif %}
+                </div>
+                </div>
+    
+                <div class="d-flex flex-column justify-content-center mx-5">
+                <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="{{ product.image.url }}" alt="123">
+                </div>
             </div>
-            <div class="d-flex justify-content-between mx-1">
-              <p style="font-size:0.8em;">배송비</p>
-              <p class="mx-5" style="font-size:0.8em;">
-                무료배송
-              </p>
+            <div class="my-5">
+                <p class="text-center">{{ product.content }}</p>
             </div>
-
-            <hr class="border-5 ">
-            <div class="d-flex justify-content-center">
-
-              <a href="{% url 'products:add_cart' product.pk %}" class="btn btn-dark btn-lg btn-block">장바구니 담기</a>
+            <div class="text-center">
+                <a href="{% url 'reviews:index' product.pk %}" class="btn btn-outline-dark"  style="width: 100%;">리뷰</a>
             </div>
-            <hr class="border-5 ">
-            <div class="d-flex justify-content-between">
-              <p style="font-size:0.8em;">판매자</p>
-
-              <p style="font-size:0.8em;">
-                {{ product.user }}</p>
-            </div>
-            {% if request.user == product.user %}
-              <div class="d-flex justify-content-center ">
-                <a href="{% url 'products:update' product.pk %}" class="btn btn-outline-dark mx-1">수정하기</a>
-                <a href="{% url 'products:delete' product.pk %}" class="btn btn-outline-dark mx-1">삭제하기</a>
-              </div>
-            {% endif %}
-          </div>
         </div>
-
-        <div class="d-flex flex-column justify-content-center ms-5">
-          <img src="{{ product.image.url }}" alt="123">
-        </div>
-      </div>
-
+        
     </div>
+
+
+
     <div>
-      <div class="mt-5 d-flex justify-content-between">
-        <p>내용 :
-          {{ product.content }}</p>
-        <a href="{% url 'reviews:index' product.pk %}" class="btn btn-outline-dark">리뷰</a>
-      </div>
       <div class="mt-5 d-flex justify-content-center">
         <p style="font-size:0.5em;">등록날짜 :
           {{ product.created_at }}</p>
 
       </div>
-      <div class="mt-5 d-flex justify-content-center"></div>
-
     </div>
-
-  </div>
+   
+</div>
+  
 {% endblock content %}
