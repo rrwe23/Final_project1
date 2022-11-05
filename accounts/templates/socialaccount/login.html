@@ -7,20 +7,27 @@
 {% block content %}
 
 {% comment %} 연결 {% endcomment %}
-{% if process == "connect" %}
-<h1>{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
+    <div class="container ">
+        
+        {% if process == "connect" %}
+        <div class="text-center">
+            <h1>{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
+        </div>
+        <p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+        
+        {% else %}
+        {% comment %} 로그인 {% endcomment %}
+        <div class="text-center ">
+            <h1 class="my-4">{% blocktrans with provider.name as provider %}{{ provider }} 로그인{% endblocktrans %}</h1>
+            <img src="https://png.pngtree.com/png-vector/20191003/ourlarge/pngtree-cyber-man-icon-isolated-on-abstract-background-png-image_1779361.jpg" alt=""style="width:300px;">
+        </div>
+        <p class="text-center my-4">{% blocktrans with provider.name as provider %}{{ provider }} 계정을 사용해 로그인을 진행하려 합니다.{% endblocktrans %}</p>
+        {% endif %}
 
-<p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
-{% else %}
-{% comment %} 로그인 {% endcomment %}
-<h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+        <form action="" method="POST" class="d-flex justify-content-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark btn-lg " style="width:30%;">{% trans "login" %}</button>
+        </form>
 
-<p>{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
-{% endif %}
-
-<form action="" method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-outline-dark">{% trans "login" %}</button>
-</form>
-
+    </div>
 {% endblock content %}
