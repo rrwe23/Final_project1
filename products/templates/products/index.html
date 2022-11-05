@@ -2,64 +2,54 @@
 
 {% block content %}
 
-<div class="row mb-3">
-  <div id="carousel" class="carousel slide" data-bs-ride="false" style="object-fit: cover;min-height: 200px;">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-          <img src="https://csp-clients.s3.amazonaws.com/jjpoolandspa/wp-content/uploads/2015/11/1920x480-water-droplets.jpg" class="d-block w-100" alt="Error"  style="height: 650px;">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>slide 1 label</h5>
-          <p>Some representative placeholder content for the slide 1.</p>
+  <div class="row mb-3">
+    <div id="carousel" class="carousel slide" data-bs-ride="false" style="object-fit: cover;min-height: 200px;">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="http://m.lfcorp.com/upload/editor/4b993b106f7c430182e780f18f3a645f.jpg" class="d-block w-100" alt="Error" style="height: 650px;">
+          <div class="carousel-caption d-none d-md-block"></div>
+        </div>
+        <div class="carousel-item active">
+          <img src="http://comino7981.cafe24.com/wp-content/uploads/2018/07/maxresdefault-3.jpg" class="d-block w-100" alt="Error" style="height: 650px;">
+          <div class="carousel-caption d-none d-md-block"></div>
+        </div>
+        <div class="carousel-item active">
+          <img src="https://maison-mined.com/web/upload/q/opengraph.jpg" class="d-block w-100" alt="Error" style="height: 650px;">
+          <div class="carousel-caption d-none d-md-block"></div>
         </div>
       </div>
-      <div class="carousel-item active">
-        <img src="https://pcrbio.com/app/uploads/qPCRBIO-SyGreen-Mix-2560-x-480-banner-1920x480.jpg" class="d-block w-100" alt="Error"  style="height: 650px;">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>slide 2 label</h5>
-        <p>Some representative placeholder content for the slide 2.</p>
-      </div>
-      </div>
-      <div class="carousel-item active">
-        <img src="https://pcrbio.com/app/uploads/1-Relative-Gene-Expression-Analysis-2560-x-480-banner-1-1920x480.jpg" class="d-block w-100" alt="Error"  style="height: 650px;">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>slide 3 label</h5>
-        <p>Some representative placeholder content for the slide 3.</p>
-      </div>
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
-</div>
 
-<div class="row row-cols-3 row-cols-md-3 g-4">
-  {% for product in products %}
-    <div class="col">
-      <div class="card h-100">
-        <a href="{% url 'products:detail' product.id %}">
-          <img src="{{ product.image.url }}" class="card-img-top" alt="...">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.star }}</p>
-          <p class="card-text">{{ product.price }}</p>
-          <p class="text-muted">Reviews ({{ product.review.count }})</p>
+  <div class="row row-cols-3 row-cols-md-3 g-4">
+    {% for product in products %}
+      <div class="col">
+        <div class="card h-100">
+          <a href="{% url 'products:detail' product.id %}">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.star }}</p>
+            <p class="card-text">{{ product.price }}</p>
+            <p class="text-muted">Reviews ({{ product.review.count }})</p>
+          </div>
         </div>
       </div>
-    </div>
-  {% endfor %}
-</div>
-
+    {% endfor %}
+  </div>
 
 {% endblock content %}
