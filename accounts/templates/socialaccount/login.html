@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+{% load socialaccount %}
+{% load i18n %}
+
+{% block content %}
+
+{% comment %} 연결 {% endcomment %}
+{% if process == "connect" %}
+<h1>{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
+
+<p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+{% else %}
+{% comment %} 로그인 {% endcomment %}
+<h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+
+<p>{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-dark">{% trans "login" %}</button>
+</form>
+
+{% endblock content %}
