@@ -5,21 +5,29 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-center my-4">
+  <div class="d-flex justify-content-center my-4">
     <div class="d-flex flex-column justify-content-center" style="width: 30rem;">
-        <h1 class="text-center fw-bold mb-3" style="color: black">로그인</h1>
-            <div>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    {% bootstrap_button button_type="submit" button_class="btn-outline-dark w-100" content="로그인" %}
-                </form>
-                <a href="{% provider_login_url 'google' %}"><i class="fab fa-google fa-fw"></i>구글 계정으로 로그인</a>
-                <a href="{% provider_login_url 'naver' %}"><i class="fab fa-naver fa-fw"></i>네이버 계정으로 로그인</a>
-                <a href="{% provider_login_url 'kakao' %}"><i class="fab fa-kakao fa-fw"></i>카카오 계정으로 로그인</a>
-            </div>
-        </h1>
-    </div>
-</div>
+      <h1 class="text-center fw-bold mb-3" style="color: black">로그인</h1>
+      <div>
+        <form action="" method="POST">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% bootstrap_button button_type="submit" button_class="btn-outline-dark w-100" content="로그인" %}
+        </form>
+        <div class="d-flex justify-content-around mt-3">
+          <a href="{% provider_login_url 'google' %}">
 
-{% endblock content %}
+            <button type="button" class="btn btn-outline-light rounded-circle border-0" id="img_btn"><img src="https://i.pinimg.com/564x/23/6d/a9/236da9ee082e000fee34f72d84f7bd59.jpg" style="width:50px; height:50px;" class="fab fa-google fa-fw btm_image rounded-circle"></button>
+            <a href="{% provider_login_url 'naver' %}">
+
+              <button type="button" class="btn btn-outline-light rounded-circle border-0" id="img_btn"><img src="https://play-lh.googleusercontent.com/Kbu0747Cx3rpzHcSbtM1zDriGFG74zVbtkPmVnOKpmLCS59l7IuKD5M3MKbaq_nEaZM" style="width:50px; height:50px;" class="btm_image fab fa-naver fa-fw rounded-circle"></button>
+              <a href="{% provider_login_url 'kakao' %}">
+
+                <button type="button" class="btn btn-outline-light rounded-circle border-0" id="img_btn"><img src="https://cs.kakao.com/images/icon/img_kakaocs.png" style="width:50px; height:50px;" class="btm_image fab fa-kakao fa-fw rounded-circle"></button>
+              </div>
+            </div>
+          </h1>
+        </div>
+      </div>
+
+    {% endblock content %}
