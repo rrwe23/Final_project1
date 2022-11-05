@@ -67,11 +67,6 @@ SITE_ID = 1
 ACCOUNT_SIGNUP_REDIRECT_URL = 'products:index'
 LOGIN_REDIRECT_URL = 'products:index'
 
-# Override form for allauth
-ACCOUNT_FORMS = {
-    'login': 'django.contrib.auth.forms.AuthenticationForm',
-}
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -87,7 +82,7 @@ ROOT_URLCONF = 'pjt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'templates' ],
+        'DIRS': [ BASE_DIR / 'templates', BASE_DIR / 'socials' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
