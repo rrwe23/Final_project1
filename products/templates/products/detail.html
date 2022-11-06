@@ -60,12 +60,12 @@
                     {% if product.image %}
                         <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="{{ product.image.url }}" alt="123">
                     {% else %}
-                        <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="https://dummyimage.com/600x400/000/454545" alt="123">
+                        <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="https://dummyimage.com/800x800/000/454545" alt="123">
                     {% endif %}
                 </div>
             </div>
             <div class="my-5">
-                <p class="text-center">{{ product.content }}</p>
+                <p class="text-center">{{ product.content | linebreaks }}</p>
             </div>
             <div class="text-center">
                 <a href="{% url 'reviews:index' product.pk %}" class="btn btn-outline-dark"  style="width: 100%;">리뷰</a>
