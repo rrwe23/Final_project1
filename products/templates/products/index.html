@@ -36,7 +36,11 @@
       <div class="col">
         <div class="card h-100" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2);">
           <a href=" {% url 'products:detail' product.id %}">
-            <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+            {% else %}
+              <img src="https://dummyimage.com/600x400/000/454545" class="card-img-top" alt="...">
+            {% endif %}
           </a>
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>

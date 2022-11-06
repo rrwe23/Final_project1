@@ -57,7 +57,11 @@
                 </div>
     
                 <div class="d-flex flex-column justify-content-center mx-5">
-                <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="{{ product.image.url }}" alt="123">
+                    {% if product.image %}
+                        <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="{{ product.image.url }}" alt="123">
+                    {% else %}
+                        <img class="rounded mx-5" style="box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.2); width: 80%; height: 100%;" src="https://dummyimage.com/600x400/000/454545" alt="123">
+                    {% endif %}
                 </div>
             </div>
             <div class="my-5">
