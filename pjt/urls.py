@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static
+from django.views.static import serve
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,13 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('reviews/', include('reviews.urls')),
     path('socials/', include('allauth.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# media, static load for 'DEBUG = False'
+# https://senticoding.tistory.com/82
+urlpatterns += url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+urlpatterns += url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+
+
+# only work in DEBUG mode
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
