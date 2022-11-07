@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 
   <div class="row mb-3">
@@ -45,7 +47,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.star }}</p>
-            <p class="card-text">{{ product.price }}</p>
+            <p class="card-text">{{ product.price | intcomma }}</p>
             <p class="text-muted">Reviews ({{ product.review.count }})</p>
           </div>
         </div>

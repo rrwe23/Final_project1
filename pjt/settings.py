@@ -20,13 +20,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-90itrdhws8=elk55nzff-m!bd+5n46qa2we#y=0n*))tk%6%2*'
+# Secret key loads from json file
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting):
+    """Get secret variable or return explicit exception"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com", "hoje.shop"]
 
 
 # Application definition
@@ -54,6 +68,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.kakao',
+
+    # intcomma setting for price in products/index.html and products/detail.html
+    'django.contrib.humanize',
 ]
 
 # For allauth
@@ -66,6 +83,9 @@ SITE_ID = 1
 # redirect for allauth
 ACCOUNT_SIGNUP_REDIRECT_URL = 'products:index'
 LOGIN_REDIRECT_URL = 'products:index'
+
+# The user is required to hand over an e-mail address when signing up.
+ACCOUNT_EMAIL_REQUIRED = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -145,6 +165,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# Setting for deployment env
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 # Default primary key field type
@@ -159,6 +181,7 @@ MEDIA_URL = "/media/"
 # User model setting
 AUTH_USER_MODEL = 'accounts.user'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# Setting for deployment env
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#)
