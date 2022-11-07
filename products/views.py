@@ -7,14 +7,8 @@ import random
 def index(request):
     products = Product.objects.all()
 
-    if len(products) < 3:
-        carousels = list(range(3))
-    else:
-        carousels = random.sample(list(products), k=3)
-
     context = {
         "products": products,
-        "carousels": carousels,
     }
 
     return render(request, "products/index.html", context)
