@@ -186,3 +186,7 @@ AUTH_USER_MODEL = 'accounts.user'
 #STATICFILES_DIRS = (
 #    os.path.join(BASE_DIR, 'static'),
 #)
+
+
+DEBUG = True
+ALLOWED_HOSTS = ['*']
